@@ -31,10 +31,10 @@ Vytvořte veřejné třídy `Disk`, `Pamet`, `Procesor`, `Pocitac` v balíčku `
 
 
 ### Pamet
-* `long` kapacita
+* `long` kapacita (v bajtech)
 
 ### Procesor
-* `String` vyrobce (v bajtech)
+* `String` vyrobce
 * `long` rychlost (v Hz)
 
 ### Pocitac
