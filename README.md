@@ -26,20 +26,20 @@ celého příkazu:
 Vytvořte veřejné třídy `Disk`, `Pamet`, `Procesor`, `Pocitac` v balíčku `cz.czechitas.ukol3.model`. Třídy budou mít následující vlastnosti:
 
 ###  Disk
-* `long` kapacita (v bajtech)
-* `long` vyuziteMisto (v bajtech)
+* `long` kapacita – v bajtech
+* `long` vyuziteMisto – v bajtech
 
 
 ### Pamet
-* `long` kapacita (v bajtech)
+* `long` kapacita – v bajtech
 
 ### Procesor
 * `String` vyrobce
-* `long` rychlost (v Hz)
+* `long` rychlost – v Hz
 
 ### Pocitac
-* `boolean` jeZapnuty (toto bude pouze field, bez getteru a setteru)
-* `Procesor` cpu (budeme se tvářit, že počítač má jen jeden procesor s jedním jádrem)
+* `boolean` jeZapnuty – toto bude pouze field, bez getteru a setteru
+* `Procesor` cpu – budeme se tvářit, že počítač má jen jeden procesor s jedním jádrem
 * `Pamet` ram
 * `Disk` pevnyDisk
 
@@ -50,14 +50,16 @@ Do třídy `Pocitac` naprogamujte tři metody:
 * `public void zapniSe()`
 * `public void vypniSe()`
 
-První metoda bude vracet stav, zda je počítač zapnutý (hodnotu fieldu `jeZapnuty`). Další dvě metody budou počítač zapínat resp. vypínat, tj. budou nastavovat
-proměnnou (field) `jeZapnuty` a do konzole vypíšou odpovídající informaci.
+První metoda bude vracet stav, zda je počítač zapnutý (hodnotu fieldu `jeZapnuty`).
+Další dvě metody budou počítač zapínat resp. vypínat, tj. budou nastavovat proměnnou (field) `jeZapnuty` a do konzole vypíšou odpovídající informaci (např. „Počítač se zapnul.“).
 
-Počítač není možno zapnout dvakrát. Při takovém pokusu vypište chybovou hlášku.
+Počítač není možno zapnout dvakrát.
+Při takovém pokusu vypište chybovou hlášku.
 
-Počítač je možno vypnout vícekrát, ale opakované volání metody `vypniSe()` se ignoruje.
+Počítač je možno vypnout vícekrát, ale opakované volání metody `vypniSe()` se ignoruje (ani se nevypíše žádná hláška).
 
-Aby bylo možné počítač zapnout, musí mít procesor, paměť a disk. Při pokusu o zapnutí počítače tedy musíte zkontrolovat, zda se daná část v počítači nachází.
+Aby bylo možné počítač zapnout, musí mít procesor, paměť a disk.
+Při pokusu o zapnutí počítače tedy musíte zkontrolovat, zda se daná část v počítači nachází.
 Pokud nějaké chybí (např. `ram == null`), metoda pro zapnutí vypíše do konzle chybovou hlášku a metoda se ukončí (počítač se nezapne).
 
 
@@ -75,21 +77,19 @@ Příklad metody `main` Filipova počítače:
 
 ```java
 public static void main(String... args) {
-    Pocitac filipuvPocitac;
-    filipuvPocitac = new Pocitac();
+    Pocitac filipuvPocitac = new Pocitac();
     System.out.println(filipuvPocitac.toString());
-    filipuvPocitac.zapniSe();      // Vypise chybu, protoze pocitac
-                                   // nema vsechny povinne soucasti
+    filipuvPocitac.zapniSe();      // Vypíše chybu, protože počítač v tuto chvíli nemá všechny povinné součásti.
 
     Procesor filipuvProcesor = new Procesor();
-    filipuvProcesor.setRychlost(3_400_000_000_000L);
-    filipuvProcesor.setVyrobce("Intel");
+    filipuvProcesor.setRychlost(3_490_000_000L);
+    filipuvProcesor.setVyrobce("Apple");
 
     Pamet filipovaPamet = new Pamet();
-    filipovaPamet.setKapacita(16_000_000_000L);
+    filipovaPamet.setKapacita(24_000_000_000L);
 
     Disk filipuvDisk = new Disk();
-    filipuvDisk.setKapacita(255_195_746_304L);
+    filipuvDisk.setKapacita(994_662_584_320L);
 
     filipuvPocitac.setCpu(filipuvProcesor);
     filipuvPocitac.setRam(filipovaPamet);
@@ -98,16 +98,17 @@ public static void main(String... args) {
     System.out.println(filipuvPocitac.toString());
 
     filipuvPocitac.zapniSe();
-    filipuvPocitac.zapniSe();      // Vypise chybu, protoze pocitac uz bezi
+    filipuvPocitac.zapniSe();      // Vypíše chybu, protože počítač už běží
     System.out.println(filipuvPocitac.toString());
     filipuvPocitac.vypniSe();
 
-    filipuvPocitac.vypniSe();      // Nevypise chybu, ale nic neprovede,
-    filipuvPocitac.vypniSe();      // protoze pocitac je uz vypnuty
+    filipuvPocitac.vypniSe();      // Nevypíše chybu, ale nic neprovede, protože počítač už je vypnutý
 }
 ```
 
-Nezapomeňte, že je úkolem vytvořit **model svého počítače**. Parametry vašeho počítače budou pravděpodobně **jiné** než Filipova počítače.
+Nezapomeňte, že je úkolem vytvořit **model vašeho počítače**.
+Parametry vašeho počítače budou pravděpodobně **jiné** než Filipova počítače.
+(Pokud ale nějaký parametr neumíte snadno zjistit, klidně si údaj vymyslete.)
 
 ### Část 2
 
