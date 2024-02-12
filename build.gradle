@@ -18,7 +18,3 @@ dependencies {
 application {
     mainClass = "cz.czechitas.ukol3.HlavniProgram"
 }
-
-tasks.withType(JavaCompile) {
-    options.encoding = "UTF-8"
-}
